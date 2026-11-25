@@ -1,0 +1,59 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+class Program
+{
+    static void Main()
+    {
+        
+        Console.WriteLine("Въведете цели числа, разделени с интервал:");
+        List<string> texts = Console.ReadLine()
+            .Split(' ', StringSplitOptions.RemoveEmptyEntries)
+            .ToList();
+
+      
+        List<int> numbers = new List<int>();
+
+        foreach (string text in texts)
+        {
+            numbers.Add(int.Parse(text));
+        }
+
+        
+        Console.WriteLine("Числа:");
+
+        foreach (int number in numbers)
+        {
+            Console.WriteLine(number);
+        }
+
+      
+        Console.WriteLine($"Брой на всички числа: {numbers.Count}");
+
+        
+        List<int> filtered = new List<int>();
+
+        foreach (int number in numbers)
+        {
+            if (number > 0 && number % 2 == 0 && !filtered.Contains(number))
+            {
+                filtered.Add(number);
+            }
+        }
+
+        
+        Console.WriteLine($"Избрани числа: {string.Join(", ", filtered)}");
+
+        
+        int sum = 0;
+
+        foreach (int number in filtered)
+        {
+            sum += number;
+        }
+
+        Console.WriteLine($"Брой на избраните числа: {filtered.Count}");
+        Console.WriteLine($"Сума на избраните числа: {sum}");
+    }
+}
